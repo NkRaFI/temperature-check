@@ -15,6 +15,12 @@
             background-size: cover;
             height: 100vh;
         }
+        *{
+            font-size: 1.2rem;
+        }
+        #temperature{
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 
@@ -24,7 +30,7 @@
             <div class="input-group mb-3">
                 <input id="city-input" type="text" class="form-control" placeholder="Enter a city for Weather ...">
                 <div class="input-group-append">
-                    <button id="search-btn" type="button" class="btn btn-danger">Search</button>
+                    <button id="search-btn" type="button" class="btn btn-danger py-1">Search</button>
                 </div>
             </div>
         </form>
@@ -56,12 +62,10 @@
             const cityName = name;
             const weatherInfo = weather[0];
             const weatherDescription = weatherInfo.description;
-            // console.log(temperature);
-            // console.log(name);
-            // console.log(weatherDescription);
-            inputName = document.getElementById("inner-city").innerText = cityName;
-            ShowTemperature = document.getElementById("temperature").innerText = temperature;
-            showCloud = document.getElementById('cloud').innerText = weatherDescription;
+
+            document.getElementById("inner-city").innerText = cityName;
+            document.getElementById("temperature").innerText = temperature;
+            document.getElementById('cloud').innerText = weatherDescription;
         }
     </script>
 <!-- created a temperature checking website with the help of openweathermap api -->
