@@ -22,19 +22,48 @@
     <div class="container">
         <form class="col-md-6 m-auto py-5">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <input id="city-input" type="text" class="form-control" placeholder="Enter a city for Weather ...">
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-danger">Search</button>
+                    <button id="search-btn" type="button" class="btn btn-danger">Search</button>
                 </div>
             </div>
         </form>
         <div class="weather-status text-white text-center">
             <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
-            <h1>Dhaka</h1>
-            <h3><span>38.06</span>&deg;C</h3>
-            <h1 class="lead">Clouds</h1>
+            <h1 id="inner-city">City Name</h1>
+            <h3><span id="temperature">38.06</span>&deg;C</h3>
+            <h1 id="cloud" class="lead">Clouds</h1>
         </div>
     </div>
+
+    <script>
+        //adding onClick eventListener to the search button
+        document.getElementById("search-btn").addEventListener("click", function () {
+            //getting the city name inputted in the search bar and passing it to the api link
+            const cityInput = document.getElementById("city-input").value;
+
+            //fetching the api openweathermap to get the data
+            fetch('http://api.openweathermap.org/data/2.5/weather?q=' + cityInput + '&units=metric&appid=68697c683bbe3762ee5de7b7245ac8d2')
+                .then(response => response.json())
+                .then(data => takeData(data))
+                .catch(error => alert("invalid city name"));
+        })
+
+        //taking data from the api and adding the data in the dom
+        function takeData(apiData) {
+            const { main, name, weather } = apiData;
+            const temperature = main.temp;
+            const cityName = name;
+            const weatherInfo = weather[0];
+            const weatherDescription = weatherInfo.description;
+            // console.log(temperature);
+            // console.log(name);
+            // console.log(weatherDescription);
+            inputName = document.getElementById("inner-city").innerText = cityName;
+            ShowTemperature = document.getElementById("temperature").innerText = temperature;
+            showCloud = document.getElementById('cloud').innerText = weatherDescription;
+        }
+    </script>
 
 </body>
 
