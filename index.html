@@ -49,7 +49,7 @@
             const cityInput = document.getElementById("city-input").value;
 
             //fetching the api openweathermap to get the data
-            fetch('http://api.openweathermap.org/data/2.5/weather?q=' + cityInput + '&units=metric&appid=ebfe8f996d2e40536a96303d0b57ee1a')
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityInput + '&units=metric&appid=ebfe8f996d2e40536a96303d0b57ee1a')
                 .then(response => response.json())
                 .then(data => takeData(data))
                 .catch(error => alert("invalid city name"));
